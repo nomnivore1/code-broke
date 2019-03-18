@@ -143,8 +143,7 @@ fprintf(output,"A Array:\r\n");
 int main ()
 {
 //initial arrays necessary for calculation
-double A1[11], B1[11], C1[11], Z1[11], X1[11], A2[11], B2[11], C2[11], Z2[11], X2[11], n, garbage;
-	int y;
+double A1[11], B1[11], C1[11], Z1[11], X1[11], A2[11], B2[11], C2[11], Z2[11], X2[11], n;
 //arrays for saving input arrays for later output
 double A1x[11], B1x[11], C1x[11], Z1x[11], A2x[11], B2x[11], C2x[11], Z2x[11];
 printf("check");
@@ -165,19 +164,19 @@ for (int j=2;j<=n;j++)
 		
 		for(int i=j-2;i>0;i--)
 		{
-		fscanf(input,"%lf", &garbage);
+		fscanf(input,"%*lf");
 		}
 	if (j<n)
 	{
 		
-		fscanf(input,"%lf, %lf, %lf\r\n", &A1[j], &B1[j], &C1[j]);
+		fscanf(input,"%lf %lf %lf %*s\r\n", &A1[j], &B1[j], &C1[j]);
 		A1x[j]=A1[j];
 		B1x[j]=B1[j];
 		C1x[j]=C1[j];
 	}
 	if (j=n)
 	{
-		fscanf(input,"%lf %lf\r\n", &A1[j], &B1[j]);
+		fscanf(input,"%lf %lf %*s\r\n", &A1[j], &B1[j]);
 		A1x[j]=A1[j];
 		B1x[j]=B1[j];	
 	}
@@ -199,7 +198,7 @@ printf("check");
 fscanf(input,"%lf\r\n",&n);
 A2[0]= n;
 A2[1]=0;
-fscanf(input,"%lf %lf\r\n",&B1[1], &C1[1]);
+fscanf(input,"%lf %lf\r\n",&B2[1], &C2[1]);
 y=2;
 		
 for (int j=2;j<=n;j++)
@@ -211,18 +210,17 @@ for (int j=2;j<=n;j++)
 		if (j<n)
 	{
 		
-		fscanf(input,"%lf, %lf, %lf\r\n", &A1[y], &B1[y], &C1[y]);
-		A1x[y]=A1[y];
-		B1x[y]=B1[y];
-		C1x[y]=C1[y];
+		fscanf(input,"%lf %lf %lf\r\n", &A2[j], &B2[j], &C2[j]);
+		A2x[j]=A2[j];
+		B2x[j]=B2[j];
+		C2x[j]=C2[j];
 	}
 	if (j=n)
 	{
-		fscanf(input,"%lf %lf\r\n", &A1[y], &B1[y]);
-		A1x[y]=A1[y];
-		B1x[y]=B1[y];	
+		fscanf(input,"%lf %lf\r\n", &A2[j], &B2[j]);
+		A2x[j]=A2[j];
+		B2x[j]=B2[j];	
 	}
-	y++;
 	}
 
 
