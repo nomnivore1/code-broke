@@ -10,7 +10,7 @@ void elimination (double a[11], double b[11], double c[11], double z[11], double
 	printf("elimination");
 	double m;
 	int i, n;
-for (n=2;n<=a[0];n++)
+for (int n=2;n<=a[0];n++)
 	{
 	m=a[n]/b[n-1];
 	b[n]=b[n]-m*c[n-1];
@@ -42,7 +42,7 @@ printf("A Array:\r\n");
 	for (int y=1;y <= n;y++)
 		{
 		
-		fprintf(output,"%5.2lf\t",a1[y]);
+		fprintf(output,"%5.2lf\t",&a1[y]);
 		}
 		
 	fprintf(output,"\r\n");
@@ -51,7 +51,7 @@ printf("A Array:\r\n");
 	for (int y=1;y <= n;y++)
 		{
 		
-		fprintf(output,"%5.2lf\t",b1[y]);
+		fprintf(output,"%5.2lf\t",&b1[y]);
 		
 		}
 	fprintf(output,"\r\n");
@@ -60,7 +60,7 @@ printf("A Array:\r\n");
 	for (int y=1;y <= n;y++)
 		{
 		
-		fprintf(output,"%5.2lf\t",c1[y]);
+		fprintf(output,"%5.2lf\t",&c1[y]);
 		
 		}
 	fprintf(output,"\r\n");
@@ -69,15 +69,17 @@ printf("A Array:\r\n");
 	for (int y=1;y <= n;y++)
 		{
 		
-		fprintf(output,"%5.2lf\t",z1[y]);
+		fprintf(output,"%5.2lf\t",&z1[y]);
 		}
 	fprintf(output,"\r\n");
 	fprintf(output,"\r\n");
 	fprintf(output,"Solutions:\r\n");
+	i=1;
 	for (int y=1;y <= n;y++)
 		{
 		
-		fprintf(output,"X%i = %5.2lf\t",i, x1[y]);
+		fprintf(output,"X%i = %5.2lf\t",i, &x1[y]);
+		i++;
 		}
 	fprintf(output,"\r\n");
 	fprintf(output,"\r\n");	
@@ -92,7 +94,7 @@ fprintf(output,"A Array:\r\n");
 	for (int y=1;y <= n;y++)
 		{
 		
-		fprintf(output,"%5.2lf\t",a2[y]);
+		fprintf(output,"%5.2lf\t",&a2[y]);
 		
 		}
 	fprintf(output,"\r\n");
@@ -101,7 +103,7 @@ fprintf(output,"A Array:\r\n");
 	for (int y=1;y <= n;y++)
 		{
 		
-		fprintf(output,"%5.2lf\t",b2[y]);
+		fprintf(output,"%5.2lf\t",&b2[y]);
 		
 		}
 	fprintf(output,"\r\n");
@@ -110,7 +112,7 @@ fprintf(output,"A Array:\r\n");
 	for (int y=1;y <= n;y++)
 		{
 		
-		fprintf(output,"%5.2lf\t",c2[y]);
+		fprintf(output,"%5.2lf\t",&c2[y]);
 		
 		}
 	fprintf(output,"\r\n");
@@ -119,15 +121,17 @@ fprintf(output,"A Array:\r\n");
 	for (int y=1;y <= n;y++)
 		{
 		
-		fprintf(output,"%5.2lf\t",z2[y]);
+		fprintf(output,"%5.2lf\t",&z2[y]);
 		}
 	fprintf(output,"\r\n");
 	fprintf(output,"\r\n");
 	fprintf(output,"Solutions:\r\n");
+	i=1;
 	for (int y=1;y <= n;y++)
 		{
 		
-		fprintf(output,"X%i = %5.2lf\t",i, x2[y]);
+		fprintf(output,"X%i = %5.2lf\t",i, &x2[y]);
+		i++;
 		}	
 	fprintf(output,"\r\n");
 	fprintf(output,"\r\n");	
@@ -139,27 +143,30 @@ fprintf(output,"A Array:\r\n");
 int main ()
 {
 //initial arrays necessary for calculation
-double A1[11], B1[11], C1[11], Z1[11], X1[11], A2[11], B2[11], C2[11], Z2[11], X2[11], n;
+double A1[11], B1[11], C1[11], Z1[11], X1[11], A2[11], B2[11], C2[11], Z2[11], X2[11], n, garbage;
 	int y;
 //arrays for saving input arrays for later output
 double A1x[11], B1x[11], C1x[11], Z1x[11], A2x[11], B2x[11], C2x[11], Z2x[11];
 printf("check");
+
 	FILE * input;
 input = fopen ("thomasdata.txt","r");
 
 printf("check");
 		//loop to read matrix 1 into arrays A1,  B1, and C1. 
 fscanf(input,"%lf\r\n",&n);
-printf("%lf",n);
+printf("%lf",&n);
 A1[0]= n;
-fscanf(input,"%lf %lf\r\n",B1[1], C1[1]);
+fscanf(input,"%lf %lf\r\n",&B1[1], &C1[1]);
 y=2;
-//BIG BLOCK OF CODE QUARANTINED FOR ALWAYS SEGFAULT CRIMES. REST OF CODE ONLY SEGFAULT SOMETIMES.
-/*for (int j=2;j<=n;j++)
+
+
+for (int j=2;j<=n;j++)
 	{
 		for(int i=y-2;i>0;i--)
 		{
-		fscanf(input,"%lf");
+		fscanf(input,"%lf", &garbage);
+		y++;
 		}
 	fscanf(input,"%lf, %lf, %lf\r\n", &A1[y], &B1[y], &C1[y]);
 	A1x[y]=A1[y];
@@ -179,15 +186,18 @@ printf("check");
 
 
 //the same loops will be used to read the second matrix
+
 fscanf(input,"%lf\r\n",&n);
 A2[0]= n;
-fscanf(input,"%lf %lf\r\n",B1[1], C1[1]);
+fscanf(input,"%lf %lf\r\n",&B1[1], &C1[1]);
 y=2;
+		
 for (int j=2;j<=n;j++)
 	{
 		for(int i=y-2;i>0;i--)
 		{
-		fscanf(input,"%lf");
+		fscanf(input,"%lf", &garbage);
+		y++;
 		}
 	fscanf(input,"%lf, %lf, %lf\r\n", &A2[y], &B2[y], &C2[y]);
 	A2x[y]=A2[y];
@@ -195,14 +205,14 @@ for (int j=2;j<=n;j++)
 	C2x[y]=C2[y];
 	}
 
-		
+
 	for (int y=1;y <= n;y++)
 		{
 		
 		fscanf(input,"%lf\r\n",&Z2[y]);
 		Z2x[y]=Z2[y];
 		}
-*/
+
 elimination(A1,B1,C1,Z1,X1);
 elimination(A2,B2,C2,Z2,X2);
 A1x[0]=A1[0];
