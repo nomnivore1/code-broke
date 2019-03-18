@@ -170,18 +170,18 @@ for (int j=2;j<=n;j++)
 	if (j<n)
 	{
 		
-		fscanf(input,"%lf, %lf, %lf\r\n", &A1[y], &B1[y], &C1[y]);
-		A1x[y]=A1[y];
-		B1x[y]=B1[y];
-		C1x[y]=C1[y];
+		fscanf(input,"%lf, %lf, %lf\r\n", &A1[j], &B1[j], &C1[j]);
+		A1x[j]=A1[j];
+		B1x[j]=B1[j];
+		C1x[j]=C1[j];
 	}
 	if (j=n)
 	{
-		fscanf(input,"%lf %lf\r\n", &A1[y], &B1[y]);
-		A1x[y]=A1[y];
-		B1x[y]=B1[y];	
+		fscanf(input,"%lf %lf\r\n", &A1[j], &B1[j]);
+		A1x[j]=A1[j];
+		B1x[j]=B1[j];	
 	}
-	y++;
+	
 	}
 	
 printf("check");
@@ -195,7 +195,7 @@ printf("check");
 
 
 //the same loops will be used to read the second matrix
-
+/*
 fscanf(input,"%lf\r\n",&n);
 A2[0]= n;
 A2[1]=0;
@@ -232,7 +232,7 @@ for (int j=2;j<=n;j++)
 		fscanf(input,"%lf\r\n",&Z2[y]);
 		Z2x[y]=Z2[y];
 		}
-
+*/
 elimination(A1,B1,C1,Z1,X1);
 elimination(A2,B2,C2,Z2,X2);
 A1x[0]=A1[0];
