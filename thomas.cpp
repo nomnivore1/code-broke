@@ -42,7 +42,7 @@ printf("A Array:\r\n");
 	for (int y=1;y <= n;y++)
 		{
 		
-		fprintf(output,"%5.2lf\t",&a1[y]);
+		fprintf(output,"%5.2lf\t",a1[y]);
 		}
 		
 	fprintf(output,"\r\n");
@@ -51,7 +51,7 @@ printf("A Array:\r\n");
 	for (int y=1;y <= n;y++)
 		{
 		
-		fprintf(output,"%5.2lf\t",&b1[y]);
+		fprintf(output,"%5.2lf\t",b1[y]);
 		
 		}
 	fprintf(output,"\r\n");
@@ -60,7 +60,7 @@ printf("A Array:\r\n");
 	for (int y=1;y <= n;y++)
 		{
 		
-		fprintf(output,"%5.2lf\t",&c1[y]);
+		fprintf(output,"%5.2lf\t",c1[y]);
 		
 		}
 	fprintf(output,"\r\n");
@@ -69,7 +69,7 @@ printf("A Array:\r\n");
 	for (int y=1;y <= n;y++)
 		{
 		
-		fprintf(output,"%5.2lf\t",&z1[y]);
+		fprintf(output,"%5.2lf\t",z1[y]);
 		}
 	fprintf(output,"\r\n");
 	fprintf(output,"\r\n");
@@ -78,7 +78,7 @@ printf("A Array:\r\n");
 	for (int y=1;y <= n;y++)
 		{
 		
-		fprintf(output,"X%i = %5.2lf\t",i, &x1[y]);
+		fprintf(output,"X%i = %5.2lf\t",i, x1[y]);
 		i++;
 		}
 	fprintf(output,"\r\n");
@@ -94,7 +94,7 @@ fprintf(output,"A Array:\r\n");
 	for (int y=1;y <= n;y++)
 		{
 		
-		fprintf(output,"%5.2lf\t",&a2[y]);
+		fprintf(output,"%5.2lf\t",a2[y]);
 		
 		}
 	fprintf(output,"\r\n");
@@ -103,7 +103,7 @@ fprintf(output,"A Array:\r\n");
 	for (int y=1;y <= n;y++)
 		{
 		
-		fprintf(output,"%5.2lf\t",&b2[y]);
+		fprintf(output,"%5.2lf\t",b2[y]);
 		
 		}
 	fprintf(output,"\r\n");
@@ -112,7 +112,7 @@ fprintf(output,"A Array:\r\n");
 	for (int y=1;y <= n;y++)
 		{
 		
-		fprintf(output,"%5.2lf\t",&c2[y]);
+		fprintf(output,"%5.2lf\t",c2[y]);
 		
 		}
 	fprintf(output,"\r\n");
@@ -121,7 +121,7 @@ fprintf(output,"A Array:\r\n");
 	for (int y=1;y <= n;y++)
 		{
 		
-		fprintf(output,"%5.2lf\t",&z2[y]);
+		fprintf(output,"%5.2lf\t",z2[y]);
 		}
 	fprintf(output,"\r\n");
 	fprintf(output,"\r\n");
@@ -130,7 +130,7 @@ fprintf(output,"A Array:\r\n");
 	for (int y=1;y <= n;y++)
 		{
 		
-		fprintf(output,"X%i = %5.2lf\t",i, &x2[y]);
+		fprintf(output,"X%i = %5.2lf\t",i, x2[y]);
 		i++;
 		}	
 	fprintf(output,"\r\n");
@@ -151,27 +151,36 @@ printf("check");
 
 	FILE * input;
 input = fopen ("thomasdata.txt","r");
-
+if (input == 0) { printf("OwOops");}
 printf("check");
 		//loop to read matrix 1 into arrays A1,  B1, and C1. 
 fscanf(input,"%lf\r\n",&n);
-printf("%lf",&n);
+printf("%lf",n);
 A1[0]= n;
+A1[1]=0;
 fscanf(input,"%lf %lf\r\n",&B1[1], &C1[1]);
-y=2;
-
 
 for (int j=2;j<=n;j++)
 	{
-		for(int i=y-2;i>0;i--)
+		
+		for(int i=j-2;i>0;i--)
 		{
 		fscanf(input,"%lf", &garbage);
-		y++;
 		}
-	fscanf(input,"%lf, %lf, %lf\r\n", &A1[y], &B1[y], &C1[y]);
-	A1x[y]=A1[y];
-	B1x[y]=B1[y];
-	C1x[y]=C1[y];
+	if (j<n)
+	{
+		
+		fscanf(input,"%lf, %lf, %lf\r\n", &A1[y], &B1[y], &C1[y]);
+		A1x[y]=A1[y];
+		B1x[y]=B1[y];
+		C1x[y]=C1[y];
+	}
+	if (j=n)
+	{
+		fscanf(input,"%lf %lf\r\n", &A1[y], &B1[y]);
+		A1x[y]=A1[y];
+		B1x[y]=B1[y];	
+	}
 	y++;
 	}
 	
@@ -189,6 +198,7 @@ printf("check");
 
 fscanf(input,"%lf\r\n",&n);
 A2[0]= n;
+A2[1]=0;
 fscanf(input,"%lf %lf\r\n",&B1[1], &C1[1]);
 y=2;
 		
@@ -197,12 +207,22 @@ for (int j=2;j<=n;j++)
 		for(int i=y-2;i>0;i--)
 		{
 		fscanf(input,"%lf", &garbage);
-		y++;
 		}
-	fscanf(input,"%lf, %lf, %lf\r\n", &A2[y], &B2[y], &C2[y]);
-	A2x[y]=A2[y];
-	B2x[y]=B2[y];
-	C2x[y]=C2[y];
+		if (j<n)
+	{
+		
+		fscanf(input,"%lf, %lf, %lf\r\n", &A1[y], &B1[y], &C1[y]);
+		A1x[y]=A1[y];
+		B1x[y]=B1[y];
+		C1x[y]=C1[y];
+	}
+	if (j=n)
+	{
+		fscanf(input,"%lf %lf\r\n", &A1[y], &B1[y]);
+		A1x[y]=A1[y];
+		B1x[y]=B1[y];	
+	}
+	y++;
 	}
 
 
